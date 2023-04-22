@@ -2,6 +2,7 @@
 import { genSaltSync, hashSync, compareSync } from 'bcrypt';
 import Admin from "../models/Admin.mjs";
 import validarAdmin from "../functions/validarAdmin.mjs";
+import Autenticacao from '../middleware/autenticacao.mjs';
 
 export default class PrincipalController {
 
@@ -35,11 +36,11 @@ export default class PrincipalController {
             {
               if (admin != undefined) {
                 if (compareSync(senha, admin.senha)) {
-/*                     const token = Autenticacao.gerarToken(admin, "Admin");
+                    const token = Autenticacao.gerarToken(admin, "Admin");
                     res.cookie("token", token, {
                       httpOnly: true,
                     });
-                    console.log('Você está logado com e-mail e senha\n', token); */
+                    console.log('Você está logado com e-mail e senha\n', token); 
                     return res.status(200).redirect("/admin/home");
                 } else {
                     erros.push({ error:"Email ou senha invalidos."});
@@ -59,5 +60,9 @@ export default class PrincipalController {
         return res.status(200).render("./admin/home", {title: "HotelHUB"});
     };
 
+    static async logout (req, res) {
+        req.flash("mensagem", "Desconectado com sucesso!");
+        return res.status(200).redirect("/")
+    }
 
 };

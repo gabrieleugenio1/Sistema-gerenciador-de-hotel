@@ -4,9 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=title%></title>
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script defer src="/js/main.js"></script>
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <header class="header">
+        <h1>HotelHUB</h1>
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket fa-xl header__icon"></i></a>
+    </header>
+    <main>
+        <section class="options">
+            <button id="novaHospedagem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-building fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Nova<br>Hospedagem</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="gerenciarHospedagem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-building-circle-exclamation fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Gerenciar<br>Hospedagem</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="cadastrarHospede">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-users fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Cadastrar<br>Hóspede</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="gerenciarHospede">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-user-gear fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Gerenciar<br>Hóspedes</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="gerenciarAcomodacoes">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-door-open fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Gerenciar<br>Acomodações</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="configurarDiarias">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-sun fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Configurar<br>Diárias</h1></pre>
+                    </div>
+                </div>
+            </button>
+            <button id="gerenciarGaragem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-car fa-2xl options__tipo-icon"></i>
+                        <pre><h1>Gerenciar<br>Garagem</h1></pre>
+                    </div>
+                </div>
+            </button>
+        </section>
+
+        <section class="escolha">
+            <h2>Nova acomodação</h2>
+            <form action="" method="post">
+                <label for="tipo">Selecione o tipo:</label><br>
+                <select name="tipo" id="tipo">
+                    <option value="apartamento">Apartamento</option>
+                </select>
+                    <div class="escolha__form___flex">
+                        <label for="acomodacao">Número da acomadação:</label>
+                        <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                        <label for="andar">Andar:</label>
+                        <input type="tel" name="andar" id="acomodacaoAndar">
+                    </div>
+                    <br>
+                    <input type="submit" value="Cadastrar">
+                </select>
+
+            </form>
+        </section>
+
+
+
+
+
+
+
+    </main>
 </body>
 </html>

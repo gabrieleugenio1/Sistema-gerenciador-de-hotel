@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel="stylesheet" href="./css/loginCadastro.css">
-    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="/css/loginCadastro.css">
+    <script src="/js/main.js"></script>
 </head>
 <body>
     <main class="main">
         <% if( mensagem.length > 0 ) {%> 
-            <div class="alert sucess"><h3 onclick="alerta()">Conta criada com sucesso!</h3></div>
+            <div class="alert sucess"><h3 onclick="alerta()"><%= mensagem %></h3></div>
         <%} else if( erros.length > 0 ) {%> 
             <div class="alert danger"><h3 onclick="alerta()"><% for(erro of erros) {%> <%= erro.error %> <% } %></h3></div>
         <%} %>
