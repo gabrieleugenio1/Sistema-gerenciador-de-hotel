@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+:root{
+    --cor-1: #2CEAA3 ;
+    --cor-2: #0EB1D2 ;
+    --cor-3: #5438DC ;
+    --cor-4: #FAF33E ;
+    --cor-5: #F7B801 ;
+    --cor-branco: #F2F2F2;
+    --cor-preto: #2F2F2F;
+    --cor-sucesso:#D1E7DD;
+    --cor-borda-sucesso: #A3CFBB;
+    --cor-falha:#F8D7DA;
+    --cor-borda-falha: #F1AEB5;
+}
+
+body{
+    background-color: var(--cor-3);
+}
+
+/*Cabeçalho*/
+.header{
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-1);
+    box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
+    -webkit-box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
+    -moz-box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
+}
+/*Fim cabeçalho*/
+
+/*Forms*/
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 110px);
+    padding: 3rem;
+}
+
+.form{
+    border: 1px solid var(--cor-branco);
+    border-radius: 5%;
+    background-color: var(--cor-branco);
+    border-bottom: 7px solid var(--cor-2) ;
+    padding: 2.4rem 5rem;
+}
+
+.form__logincadastro{
+    width: 11rem;
+
+}
+input[type="password"], input[type="email"]{
+    width: 100%;
+}
+
+input[type="submit"]{
+    background-color: var(--cor-2);
+    border-radius: 5%;
+    padding: .9rem;
+    cursor: pointer;
+}
+
+label{
+    color: var(--cor-2
+    
+    );
+}
+/*Fim foms*/
+
+/*Validação*/
+.alert{
+    position: absolute;
+    top: 2.6rem;
+    padding: .3rem;
+    cursor: pointer;
+} 
+
+.sucess{
+    background-color: var(--cor-sucesso) ;
+    border: 1px solid var(--cor-borda-sucesso);
+}
+
+.danger{
+    background-color: var(--cor-falha) ;
+    border: 1px solid var(--cor-borda-falha);
+}
