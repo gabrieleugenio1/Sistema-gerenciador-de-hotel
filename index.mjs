@@ -9,11 +9,13 @@ import express from "express";
 
  //Ativar configurações
 import configExpress from "./configs/express.mjs";
-
+import {conn} from "./db/conn.mjs";
 //Configuração inicial
 const app = express();
 const port = process.env.PORT || 3000;
 configExpress(express, app);
 
 //Porta em execução
-app.listen(port, console.log(`Servidor executando na porta ${port}`));
+conn.sync({ force:false }).then(()=> {
+    app.listen(port, console.log(`Servidor executando na porta ${port}`));
+});

@@ -1,4 +1,4 @@
-import { DataTypes, conn } from '../db/conn.mjs';
+import { DataTypes, conn } from "../db/conn.mjs";
 
 const Admin = conn.define("admin", {
     id: {
@@ -18,7 +18,5 @@ const Admin = conn.define("admin", {
         allowNull:false
     },
 }, { updatedAt: false });
-
-Admin.sync({ force: false });
 
 export default Admin;

@@ -12,7 +12,7 @@ export default class Autenticacao {
 
     static verificaTokenAdmin(req, res, next){
         const token = req.cookies.token;
-        console.log(token)
+
         if(!token){
             return res.status(401).json({message: "Faça login para acessar o contéudo!"});
         }
@@ -29,5 +29,13 @@ export default class Autenticacao {
                 next();
             };
         });
+    };
+    static verificaToken(req, res, next){
+        const token = req.cookies.token;   
+        if(token){
+            return res.status(200).redirect("/admin/home");
+        }else{
+            next()
+        };
     };
 };

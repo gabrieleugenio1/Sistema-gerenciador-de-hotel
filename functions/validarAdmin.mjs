@@ -7,7 +7,7 @@ export default (admin) => {
  
    let regex = {
       email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      senha: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      senha: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
    };
  
    if(email) {
@@ -19,7 +19,7 @@ export default (admin) => {
      erros.push({ error: "E-mail inválido!" });
    };     
  
-   if(!senha || senha == undefined || senha == null || senha <= 6 ) {
+   if(!senha || senha == undefined || senha == null || senha <= 6 || !regex.senha.test(senha) ) {
      erros.push({error: "Senha inválida! A senha deve ter no minimo 6 caracteres."});
    };
    /* FINAL DAS VALIDAÇÕES */ 

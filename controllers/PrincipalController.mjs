@@ -17,8 +17,14 @@ export default class PrincipalController {
         const senhaCriptografada = hashSync(senha, salt);
         const validacao = validarAdmin(req.body);
         console.log(validacao, '\n' + email, senha + "\n"+ senhaCriptografada)
+        
         if(validacao) {
-            req.flash("mensagem", "Conta criada com sucesso.")
+            req.flash("mensagem", "Conta criada com sucesso.");
+            const qtdAdmin = await Admin.count();
+            if(qtdAdmin > 0 ){
+                req.flash("erros", {error:"Já existe uma conta.."});
+                return res.status(200).redirect("/");
+            }
             await Admin.create({email: email, senha: senhaCriptografada}).then(()=>{
             return res.status(201).redirect("/");
         });
@@ -43,12 +49,12 @@ export default class PrincipalController {
                     console.log('Você está logado com e-mail e senha\n', token); 
                     return res.status(200).redirect("/admin/home");
                 } else {
-                    erros.push({ error:"Email ou senha invalidos."});
+                    erros.push({ error:"Email ou senha inválido."});
                     req.flash("erros", erros);
                     return res.status(401).redirect("/");
                 };
               } else {
-                    erros.push({ error:"Email ou senha invalidos."});
+                    erros.push({ error:"Email ou senha inválido."});
                     req.flash("erros", erros);
                     return res.status(401).redirect("/");
                 };
@@ -61,6 +67,7 @@ export default class PrincipalController {
     };
 
     static async logout (req, res) {
+        res.clearCookie('token');
         req.flash("mensagem", "Desconectado com sucesso!");
         return res.status(200).redirect("/")
     }

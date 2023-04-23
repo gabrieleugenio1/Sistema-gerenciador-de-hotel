@@ -6,9 +6,10 @@ import Autenticacao from '../middleware/autenticacao.mjs';
 const router = Router();
 
 router
-      .get('/', Autenticacao.verificaTokenAdmin, PrincipalController.index)
-      .get('/admin/home',Autenticacao.verificaTokenAdmin ,PrincipalController.home)
-      .post('/cadastroAdmin', Autenticacao.verificaTokenAdmin, PrincipalController.cadastroAdmin)
-      .post('/loginAdmin', Autenticacao.verificaTokenAdmin, PrincipalController.loginAdmin)
+      .get('/', Autenticacao.verificaToken, PrincipalController.index)
+      .get('/logout', Autenticacao.verificaTokenAdmin, PrincipalController.logout)
+      .get('/admin/home', Autenticacao.verificaTokenAdmin, PrincipalController.home)
+      .post('/cadastroAdmin', Autenticacao.verificaToken, PrincipalController.cadastroAdmin)
+      .post('/loginAdmin', Autenticacao.verificaToken, PrincipalController.loginAdmin)
        
 export default router;
