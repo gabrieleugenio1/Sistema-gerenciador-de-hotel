@@ -1,3 +1,4 @@
+'use strict';
 export default (nome) => {
   if(nome){
     return nome.toLowerCase().split(' ').map(function (word) {

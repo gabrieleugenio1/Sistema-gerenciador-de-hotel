@@ -1,3 +1,4 @@
+'use strict';
 import * as model from "../models/indexModels.mjs";
 
 export default class ClientesController {

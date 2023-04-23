@@ -1,8 +1,8 @@
 'use strict';
-import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { genSaltSync, hashSync, compareSync } from "bcrypt";
 import Admin from "../models/Admin.mjs";
 import validarAdmin from "../functions/validarAdmin.mjs";
-import Autenticacao from '../middleware/autenticacao.mjs';
+import Autenticacao from "../middleware/autenticacao.mjs";
 
 export default class PrincipalController {
 

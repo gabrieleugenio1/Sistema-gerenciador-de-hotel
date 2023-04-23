@@ -1,3 +1,4 @@
+'use strict';
 export default (cpf) => {
     // Remover caracteres não numéricos
     cpf = cpf.replace(/[^\d]/g, '');

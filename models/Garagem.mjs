@@ -1,3 +1,4 @@
+'use strict';
 import { DataTypes, conn } from "../db/conn.mjs";
 import Acomodacao from "./Acomodacao.mjs"
 

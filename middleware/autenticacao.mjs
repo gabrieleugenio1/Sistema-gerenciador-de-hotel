@@ -1,4 +1,5 @@
-import jsonwebtoken from 'jsonwebtoken';
+'use strict';
+import jsonwebtoken from "jsonwebtoken";
 const { sign, verify } = jsonwebtoken;
 const secret = process.env.SECRET_JWT;
 

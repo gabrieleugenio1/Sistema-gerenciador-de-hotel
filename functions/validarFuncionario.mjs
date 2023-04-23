@@ -1,3 +1,4 @@
+'use strict';
 import validateCPF from './validarCPF.mjs';
 
 export default (funcionario, tipo, matriculaOriginal) => {

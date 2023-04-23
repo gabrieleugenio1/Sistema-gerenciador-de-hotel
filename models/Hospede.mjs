@@ -1,3 +1,4 @@
+'use strict';
 import { DataTypes, conn } from "../db/conn.mjs";
 import Gerente from "./Gerente.mjs";
 

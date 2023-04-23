@@ -1,3 +1,4 @@
+'use strict';
 import { DataTypes, conn } from "../db/conn.mjs";
 
 const Diaria = conn.define('diaria', {

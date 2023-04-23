@@ -1,3 +1,4 @@
+'use strict';
 export default (admin) => {
    let email = admin.email;
    let senha = admin.senha;

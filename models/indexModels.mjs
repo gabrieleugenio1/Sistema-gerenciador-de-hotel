@@ -1,3 +1,4 @@
+'use strict';
 import Acomodacao from "./Acomodacao.mjs";
 import Diaria from "./Diaria.mjs";
 import Enderecos from "./Enderecos.mjs";
