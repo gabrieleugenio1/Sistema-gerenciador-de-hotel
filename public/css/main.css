@@ -47,6 +47,10 @@ body {
 }
 /*Fim cabeçalho*/
 
+main{
+    height: 100%;
+}
+
 /*Opções*/
 .options {
     display: flex;
@@ -103,10 +107,30 @@ input[type="submit"]{
     padding: .8rem 0;
 }
 
+table{
+    text-align: center;
+}
 
 /*Fim escolha*/
 
 /*Acomodacao*/
 #acomodacaoNumero, #acomodacaoAndar{
     width: 35%;
+}
+
+/*Fim acomodacao*/
+
+/*Garagem*/
+.gerenciamento_garagem > h3{
+    text-align: center;
+}
+/*Fim garagem*/
+/*Footer*/
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background-color: var(--cor-sucesso);
 }

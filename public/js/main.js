@@ -11,34 +11,22 @@ const gerenciarAcomodacoes = document.querySelector("#gerenciarAcomodacoes");
 const configurarDiarias = document.querySelector("#configurarDiarias");
 const gerenciarGaragem = document.querySelector("#gerenciarGaragem");
 
+function handleButtonClick(event, classe) {
+    if (event.type === "touchstart") event.preventDefault();
+    event.stopPropagation();
+    document.querySelector(`.${classe}`).classList.toggle("disable");
+  }
 
-novaHospedagem.addEventListener("click", ()=>{
-    console.log("teste");
-});
+novaHospedagem.addEventListener("click", (event) => handleButtonClick(event,"nova_hospedagem"));
 
+gerenciarHospedagem.addEventListener("click", (event) => handleButtonClick(event,"gerenciar_hospedagem"));
 
-gerenciarHospedagem.addEventListener("click", ()=>{
-    console.log("teste");
-});
+cadastrarHospede.addEventListener("click", (event) => handleButtonClick(event,"cadastrar_hospede"));
 
+gerenciarHospede.addEventListener("click", (event) => handleButtonClick(event,"gerenciar_hospede"));
 
-cadastrarHospede.addEventListener("click", ()=>{
-    console.log("teste");
-});
+gerenciarAcomodacoes.addEventListener("click", (event) => handleButtonClick(event,"gerenciar_acomodacao"));
 
-gerenciarHospede.addEventListener("click", ()=>{
-    console.log("teste");
-});
+configurarDiarias.addEventListener("click", (event) => handleButtonClick(event,"configurar_diaria"));
 
-gerenciarAcomodacoes.addEventListener("click", ()=>{
-    console.log("teste");
-});
-
-configurarDiarias.addEventListener("click", ()=>{
-    console.log("teste");
-});
-
-gerenciarGaragem.addEventListener("click", ()=>{
-    console.log("teste");
-});
-
+gerenciarGaragem.addEventListener("click", (event) => handleButtonClick(event,"gerenciamento_garagem"));

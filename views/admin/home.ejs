@@ -72,8 +72,45 @@
                 </div>
             </button>
         </section>
-
-        <section class="escolha">
+        <br>
+        <section class="escolha nova_hospedagem disable">
+            <h2>Nova hospedagem</h2>
+            <form action="" method="post">
+                <label for="tipo">Selecione o tipo:</label><br>
+                <select name="tipo" id="tipo">
+                    <option value="apartamento">Apartamento</option>
+                </select>
+                    <div class="escolha__form___flex">
+                        <label for="acomodacao">Número da acomadação:</label>
+                        <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                        <label for="andar">Andar:</label>
+                        <input type="tel" name="andar" id="acomodacaoAndar">
+                    </div>
+                    <br>
+                    <input type="submit" value="Cadastrar">
+                </select>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de acomodação</th>
+                        <th>Número</th>
+                        <th>Andar</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apartamento</td>
+                        <td>10</td>
+                        <td>1</td>
+                        <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <br>
+        <section class="escolha gerenciar_acomodacao disable">
             <h2>Nova acomodação</h2>
             <form action="" method="post">
                 <label for="tipo">Selecione o tipo:</label><br>
@@ -101,10 +138,44 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>Apartamento</td>
+                        <td>10</td>
+                        <td>1</td>
+                        <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <br>
+        <section class="escolha gerenciamento_garagem disable">
+            <h2>Gerenciamento de garagem</h2>
+            <form action="" method="post">
+                <label for="tipo">Selecione o tipo:</label><br>
+                <select name="tipo" id="tipo">
+                    <option value="apartamento">Apartamento - nº1006</option>
+                </select>
+                    <div class="escolha__form___flex">
+                        <label for="acomodacao">Identificação da vaga:</label>
+                        <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                    </div>
+                    <br>
+                    <input type="submit" value="Cadastrar">
+                </select>
+            </form>
+            <h3>Vagas vinculadas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Acomodação</th>
+                        <th>Vaga</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apartamento - nº1006</td>
+                        <td>10</td>
+                        <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -114,8 +185,9 @@
 
 
 
-
-
     </main>
+    <footer>
+        <h3>Desenvolvido por: <a href="mailto:gabrieleugeniohu3@gmail.com">Gabriel Eugênio</a></h3>
+    </footer>
 </body>
 </html>
