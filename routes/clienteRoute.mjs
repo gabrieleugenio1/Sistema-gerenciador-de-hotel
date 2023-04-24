@@ -6,6 +6,9 @@ import ClienteController from '../controllers/ClienteController.mjs';
 const router = Router();
 
 router
-      .get('/teste', ClienteController.acomodancao)
-       
+      .post("/cadastrarAcomodacao", Autenticacao.verificaTokenAdmin, ClienteController.cadastrarAcomodacao)
+      .post("/cadastrarHospede", Autenticacao.verificaTokenAdmin, ClienteController.cadastrarHospede)
+      .post("/cadastrarHospedagem", Autenticacao.verificaTokenAdmin, ClienteController.cadastrarHospedagem)
+      .post("/cadastrarDiaria", Autenticacao.verificaTokenAdmin, ClienteController.cadastrarDiaria)
+      .post("/cadastrarGaragem", Autenticacao.verificaTokenAdmin, ClienteController.cadastrarGaragem)
 export default router;

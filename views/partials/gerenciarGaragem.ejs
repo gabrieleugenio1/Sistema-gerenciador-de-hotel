@@ -1,0 +1,35 @@
+<section class="escolha gerenciamento_garagem disable">
+    <br>
+    <h2>Gerenciar Garagem</h2>
+    <form action="/cadastrarGaragem" method="post">
+        <label for="tipo">Selecione o tipo:</label><br>
+        <select name="tipo" id="tipo">
+            <option value="apartamento">Apartamento - nº1006</option>
+        </select>
+            <div class="escolha__form___flex">
+                <label for="acomodacao">Identificação da vaga:</label>
+                <input type="tel" name="acomodacao" id="acomodacaoNumero">
+            </div>
+            <br>
+            <input type="submit" value="Cadastrar">
+        </select>
+    </form>
+    <h3>Vagas vinculadas</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Acomodação</th>
+                <th>Vaga</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apartamento - nº1006</td>
+                <td>10</td>
+                <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</section>

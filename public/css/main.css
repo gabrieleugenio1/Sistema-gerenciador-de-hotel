@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -11,11 +10,11 @@
 }
 
 :root {
-    --cor-1: #2CEAA3 ;
-    --cor-2: #0EB1D2 ;
-    --cor-3: #5438DC ;
-    --cor-4: #FAF33E ;
-    --cor-5: #F7B801 ;
+    --cor-1: #2CEAA3;
+    --cor-2: #0EB1D2;
+    --cor-3: #5438DC;
+    --cor-4: #FAF33E;
+    --cor-5: #F7B801;
     --cor-branco: #F2F2F2;
     --cor-preto: #2F2F2F;
     --cor-sucesso:#D1E7DD;
@@ -33,13 +32,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--cor-3);
+    background-color: var(--cor-2);
     width: 100%;
     height: 70px;
     padding: 0 1.5rem;
-    box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
-    -webkit-box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
-    -moz-box-shadow: 18px 15px 5px -3px rgba(0,0,0,0.39);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.36);
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.36);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.36);
 }
 
 .header__icon {
@@ -59,10 +58,10 @@ main{
     margin-top: 4rem;
 }
 .options__tipo {
-    border: 2px solid var(--cor-1);
+    border: 2px solid var(--cor-2);
     border-radius: 5%;
     padding: 2rem .3rem;
-    border-bottom: 8px solid var(--cor-4);
+    border-bottom: 7px solid var(--cor-3);
     cursor: pointer;
     width: 136.6px;
     margin: 10px;
@@ -80,7 +79,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -102,9 +101,17 @@ select {
 
 input[type="submit"]{
     width: 100%;
-    background-color: var(--cor-1);
+    background-color: var(--cor-2);
     border-radius: 2%;
     padding: .8rem 0;
+}
+
+input[type="submit"], button{
+    cursor: pointer;
+}
+
+input[type="date"]{
+    width: 17%;
 }
 
 table{
@@ -113,7 +120,21 @@ table{
 
 /*Fim escolha*/
 
+/*Nova hospedagem*/
+.nova_hospedagem-buscar_cliente{
+    background-color: var(--cor-2);
+    padding: .3rem;
+}
+/*Fim nova hospedagem*/
+
+/*Cadastrar hospede*/
+.cadastrar_hospede input[type="text"] {
+    width: 100%;
+}
+/*Fim hospede*/
+
 /*Acomodacao*/
+
 #acomodacaoNumero, #acomodacaoAndar{
     width: 35%;
 }
@@ -125,12 +146,14 @@ table{
     text-align: center;
 }
 /*Fim garagem*/
+
 /*Footer*/
+
 footer{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 40px;
-    background-color: var(--cor-sucesso);
+    background-color: var(--cor-2);
 }

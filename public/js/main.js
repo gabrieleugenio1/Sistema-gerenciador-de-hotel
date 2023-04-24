@@ -30,3 +30,5 @@ gerenciarAcomodacoes.addEventListener("click", (event) => handleButtonClick(even
 configurarDiarias.addEventListener("click", (event) => handleButtonClick(event,"configurar_diaria"));
 
 gerenciarGaragem.addEventListener("click", (event) => handleButtonClick(event,"gerenciamento_garagem"));
+
+

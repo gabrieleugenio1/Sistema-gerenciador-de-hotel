@@ -19,7 +19,8 @@ export default class Autenticacao {
         }
         verify(token, secret, (err, decoded) => {
             if(err){
-                return res.status(401).json({message: "Token inválido!"});
+                req.flash("erros",{error: "Faça login novamente"});
+                return res.status(401).redirect("/");
             };
             console.log(decoded);
             req.userId = decoded.userId;
@@ -32,11 +33,16 @@ export default class Autenticacao {
         });
     };
     static verificaToken(req, res, next){
-        const token = req.cookies.token;   
-        if(token){
-            return res.status(200).redirect("/admin/home");
-        }else{
-            next()
-        };
+        const token = req.cookies.token;
+        verify(token, secret, (err, decoded) => {
+            if(err){
+                req.flash("erros", {error: "Faça login novamente"});
+                return next();
+            };
+
+            if(req.originalUrl == "/" || req.originalUrl == "/cadastroAdmin" || req.originalUrl == "/loginAdmin") {
+                return res.status(200).redirect("/admin/home");
+            };
+        });
     };
 };

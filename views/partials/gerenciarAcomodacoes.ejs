@@ -1,0 +1,39 @@
+
+<section class="escolha gerenciar_acomodacao disable">
+    <br>
+    <h2>Nova Acomodação</h2>
+    <form action="/cadastrarAcomodacao" method="post">
+        <label for="tipo">Selecione o tipo:</label><br>
+        <select name="tipo" id="tipo">
+            <option value="apartamento">Apartamento</option>
+        </select>
+            <div class="escolha__form___flex">
+                <label for="acomodacao">Número da acomadação:</label>
+                <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                <label for="andar">Andar:</label>
+                <input type="tel" name="andar" id="acomodacaoAndar">
+            </div>
+            <br>
+            <input type="submit" value="Cadastrar">
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo de acomodação</th>
+                <th>Número</th>
+                <th>Andar</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apartamento</td>
+                <td>10</td>
+                <td>1</td>
+                <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+</section>
