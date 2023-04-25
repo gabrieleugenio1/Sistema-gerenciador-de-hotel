@@ -15,11 +15,21 @@ const Hospede = conn.define('hospedes', {
     },
     rg:{
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
+        validate:{
+            isNumeric: true,
+            min:8,
+            max:8,   
+        },
     },
     cpf:{
         type: DataTypes.STRING(11),
-        unique: true
+        unique: true,
+        validate:{
+            isNumeric: true,
+            min:11,
+            max:11
+        },
     },
     passaport:{
         type: DataTypes.STRING,

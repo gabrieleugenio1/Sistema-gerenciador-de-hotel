@@ -3,21 +3,21 @@ import { genSaltSync, hashSync, compareSync } from "bcrypt";
 import Admin from "../models/Admin.mjs";
 import validarAdmin from "../functions/validarAdmin.mjs";
 import Autenticacao from "../middleware/autenticacao.mjs";
+import * as model from "../models/indexModels.mjs";
+import moment from "moment/moment.js";
 
 export default class PrincipalController {
 
     static async index (req, res) {
         const qtdAdmin = await Admin.count({});
-        return res.status(200).render("index", { title: "HotelHUB", qtdAdmin: qtdAdmin, mensagem: req.flash("mensagem"), erros: req.flash("erros") });     
+        return res.status(200).render("index", { title: "HotelHUB", qtdAdmin: qtdAdmin, mensagem: req.flash("mensagem"), erros: req.flash("erros"), erroToken: req.flash("errosToken") });     
     };
 
     static async cadastroAdmin(req, res) {
         const {email, senha } = req.body;
         const salt = genSaltSync(10);
         const senhaCriptografada = hashSync(senha, salt);
-        const validacao = validarAdmin(req.body);
-        console.log(validacao, '\n' + email, senha + "\n"+ senhaCriptografada)
-        
+        const validacao = validarAdmin(req.body);       
         if(validacao) {
             req.flash("mensagem", "Conta criada com sucesso.");
             const qtdAdmin = await Admin.count();
@@ -63,7 +63,21 @@ export default class PrincipalController {
     };
 
     static async home (req, res) {
-        return res.status(200).render("./admin/home", {title: "HotelHUB"});
+        moment.locale("pt-br"); 
+        const diarias = await model.Diaria.findAll({raw: true});
+        const hospedes = await model.Hospede.findAll({raw:true});
+
+        hospedes.map((hospede) => {
+            if(hospede.cpf) {
+                const parteA = hospede.cpf.substring(0,3);
+                const parteB = hospede.cpf.substring(3,6);
+                const parteC = hospede.cpf.substring(6,9);
+                const parteD = hospede.cpf.substring(9,11);
+                hospede.cpf = parteA + "." + parteB + "." + parteC + "-" + parteD;
+            }; 
+            hospede.cliente = moment(hospede.createdAt).format('L');
+        })
+        return res.status(200).render("./admin/home", {title: "HotelHUB", diarias: diarias, hospedes:hospedes, mensagem:req.flash("mensagem"), erros: req.flash("erros")});
     };
 
     static async logout (req, res) {

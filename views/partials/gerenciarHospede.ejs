@@ -1,6 +1,6 @@
 <section class="escolha gerenciar_hospede disable">
     <br>
-    <h2>Gerenciar Hospede</h2>
+    <h2 class="escolha__titulo">Gerenciar Hospede</h2>
     <table>
         <thead>
             <tr>
@@ -13,6 +13,16 @@
             </tr>
         </thead>
         <tbody>
+            <% for(hospede of hospedes ) {%> 
+                <tr>
+                    <td><%= hospede.nome_completo %></td>
+                    <td><%= hospede.cpf %></td>
+                    <td><%= hospede.nacionalidade%></td>
+                    <td><%= hospede.telefone %></td>
+                    <td><%= hospede.cliente %></td>
+                    <td><i class="fa-solid fa-pen-to-square fa-lg"></i> <i class="fa-solid fa-print fa-lg"></i></td>
+                </tr>
+            <% } %>
             <tr>
                 <td>Gabriel Eugenio</td>
                 <td>000.000.000-00</td>

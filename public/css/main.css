@@ -27,9 +27,30 @@ body {
     background-color: var(--cor-branco);
 }
 
+/*Validação*/
+.alert{
+    position: absolute;
+    top: 5.6rem;
+    transform: translateX(-50%);
+    left: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+} 
+
+.sucess{
+    background-color: var(--cor-sucesso) ;
+    border: 1px solid var(--cor-borda-sucesso);
+}
+
+.danger{
+    background-color: var(--cor-falha) ;
+    border: 1px solid var(--cor-borda-falha);
+}
+
 /*Cabeçalho*/
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background-color: var(--cor-2);
@@ -67,6 +88,10 @@ main{
     margin: 10px;
 }
 
+.options__tipo:hover{
+    background-color: var(--cor-2);
+}
+
 .options__tipo-icon {
     font-size: 3.4rem;
     line-height: 1.03125em;
@@ -83,9 +108,10 @@ main{
     margin: 0 auto;
 }
 
-.escolha > h2 {
+.escolha__titulo {
     text-align: center;
 } 
+
 .escolha__form___flex{
     display: flex;
     flex-direction: column;
@@ -125,11 +151,16 @@ table{
     background-color: var(--cor-2);
     padding: .3rem;
 }
+
 /*Fim nova hospedagem*/
 
 /*Cadastrar hospede*/
 .cadastrar_hospede input[type="text"] {
     width: 100%;
+}
+
+#submitNovaHospedagem:disabled{
+    cursor: default;
 }
 /*Fim hospede*/
 

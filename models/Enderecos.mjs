@@ -9,7 +9,7 @@ const Endereco = conn.define('enderecos', {
         autoIncrement: true,
         primaryKey: true
     },
-    endereco:{
+    logradouro:{
         type: DataTypes.STRING,
         required: true
     },

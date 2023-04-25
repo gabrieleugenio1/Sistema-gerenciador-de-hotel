@@ -31,4 +31,9 @@ configurarDiarias.addEventListener("click", (event) => handleButtonClick(event,"
 
 gerenciarGaragem.addEventListener("click", (event) => handleButtonClick(event,"gerenciamento_garagem"));
 
+/*Tempo do alerta*/
+const tempo = setTimeout(() => {
+    document.querySelector(".alert").style.display = "none";
+}, 6000);
 
+document.querySelector(".alert").addEventListener("onload", tempo);

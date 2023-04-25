@@ -9,17 +9,17 @@ export default class Autenticacao {
         const payload = {adminId: admin.id};
         const options = {expiresIn: '2h'};
         return sign(payload, secret, options);
-    } 
+    };
 
     static verificaTokenAdmin(req, res, next){
         const token = req.cookies.token;
 
         if(!token){
             return res.status(401).json({message: "Faça login para acessar o contéudo!"});
-        }
+        };
+
         verify(token, secret, (err, decoded) => {
             if(err){
-                req.flash("erros",{error: "Faça login novamente"});
                 return res.status(401).redirect("/");
             };
             console.log(decoded);
@@ -34,15 +34,17 @@ export default class Autenticacao {
     };
     static verificaToken(req, res, next){
         const token = req.cookies.token;
+        
         verify(token, secret, (err, decoded) => {
-            if(err){
-                req.flash("erros", {error: "Faça login novamente"});
-                return next();
+            if(!err){
+                if(req.originalUrl == "/" || req.originalUrl == "/cadastroAdmin" || req.originalUrl == "/loginAdmin") {
+                    return res.status(200).redirect("/admin/home");
+                };
             };
-
-            if(req.originalUrl == "/" || req.originalUrl == "/cadastroAdmin" || req.originalUrl == "/loginAdmin") {
-                return res.status(200).redirect("/admin/home");
-            };
+            
+            res.clearCookie('token');
+            req.flash("errosToken", {error: "Faça login novamente"});
+            return next();
         });
     };
 };

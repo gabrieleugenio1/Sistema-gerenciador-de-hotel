@@ -1,6 +1,6 @@
 <section class="escolha configurar_diaria disable">
     <br>
-    <h2>Configurar Diárias</h2>
+    <h2 class="escolha__titulo">Configurar Diárias</h2>
     <form action="/cadastrarDiaria" method="post">
         </select>
             <div class="escolha__form___flex">
@@ -16,17 +16,19 @@
     <table>
         <thead>
             <tr>
-                <th>Valor R$</th>
+                <th>Valor</th>
                 <th>Quantidade de dias</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
+            <% for (diaria of diarias) { %>
             <tr>
-                <td>100</td>
-                <td>1</td>
+                <td>R$<%= diaria.valor.replace('.', ',') %></td>
+                <td><%= diaria.qnt_dias %> </td>
                 <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
             </tr>
+            <% } %>
         </tbody>
     </table>
     <br>

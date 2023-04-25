@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/all.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <script defer type="text/javascript" src="/js/main.js"></script>
+    <script defer type="text/javascript" src="/js/fetch.js"></script>
 </head>
 <body>
     <header class="header">
@@ -14,6 +15,11 @@
         <a href="/logout"><i class="fa-solid fa-right-from-bracket fa-xl header__icon"></i></a>
     </header>
     <main>
+        <% if( mensagem.length > 0 ) {%> 
+            <div class="alert sucess"><h3 onclick="alerta()"><%= mensagem %></h3></div>
+        <%} else if( erros.length > 0 ) {%> 
+            <div class="alert danger"><h3 onclick="alerta()"><% for(erro of erros) {%> <%= erro.error %> <% } %></h3></div>
+        <%} %>
         <section class="options">
             <button id="novaHospedagem">
                 <div>

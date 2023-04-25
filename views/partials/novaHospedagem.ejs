@@ -1,9 +1,9 @@
 <section class="escolha nova_hospedagem disable">
     <br>
-    <h2>Nova Hospedagem</h2>
+    <h2 class="escolha__titulo">Nova Hospedagem</h2>
     <form action="/cadastrarHospedagem" method="post">
-        <label for="tipo">Tipo do documento:</label>
-        <button class="nova_hospedagem-buscar_cliente">Buscar cliente</button>
+        <label for="tipo">Tipo do documento: <b><small id="resultadoBuscaCliente"></small></b></label>
+        <button class="nova_hospedagem-buscar_cliente" id="buscarCliente" type="button">Buscar cliente</button>
         <br>
         <select name="tipo" id="tipoDocumentoNovaHospedagem">
             <option value="cpf" selected>CPF</option>
@@ -12,24 +12,28 @@
             <div class="escolha__form___flex">
 
                 <label class="numeroDocumentoCpfNovaHospedagem" for="numeroDocumentoCpfNovaHospedagem">Nº Documento:</label>
-                <input class="numeroDocumentoCpfNovaHospedagem" type="tel" name="numeroDocumentoCpf" id="numeroDocumentoCpfNovaHospedagem" maxlength="11">
+                <input class="numeroDocumentoCpfNovaHospedagem" type="tel" name="cpd" id="numeroDocumentoCpfNovaHospedagem" minlength="11" maxlength="11">
 
                 <label class="numeroDocumentoPassaporteNovaHospedagem disable" for="numeroDocumentoPassaporteNovaHospedagem">Nº Documento:</label>
-                <input class="numeroDocumentoPassaporteNovaHospedagem disable" type="text" name="numeroDocumentoPassaporte" id="numeroDocumentoPassaporteNovaHospedagem" maxlength="8">
+                <input class="numeroDocumentoPassaporteNovaHospedagem disable" type="text" name="passaporte" id="numeroDocumentoPassaporteNovaHospedagem" maxlength="8">
 
                 <label for="acomodacao">Seleciona a acomodação:</label>
                 <select name="acomodacao" id="acomodacao">
                     <option value="">Apartamento - nº1006</option>
                 </select>
                 <label for="valorhospedagem">Valor da hospedagem:</label>
-                <select name="valorhospedagem" id="valorhospedagem">
-                    <option value="">R$100</option>
+                <select name="valorHospedagem" id="valorHospedagem">
+                    <% for(diaria of diarias) 
+                    {%>
+                        <option value="<%= diaria.valor %>">R$<%= diaria.valor.replace(".",",") %></option>
+                    <%} %>
+                    
                 </select>
                 <label for="dataSaida">Previsão da saída:</label>
                 <input type="date" name="dataSaida" id="dataSaida">
             </div>
             <br>
-            <input type="submit" value="Cadastrar">
+            <input id="submitNovaHospedagem" type="submit" value="Cadastrar">
         </select>
     </form>
     <br>

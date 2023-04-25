@@ -12,6 +12,10 @@ const Hospedagem = conn.define('hospedagem', {
         autoIncrement: true,
         primaryKey: true
     },
+    valor:{
+        type: DataTypes.DOUBLE,
+        allowNull: false
+    },
     entrada:{
         type: DataTypes.DATE,
         allowNull: false
@@ -35,9 +39,6 @@ Hospedagem.belongsTo(Hospede);
 
 Gerente.hasOne(Hospedagem);
 Hospedagem.belongsTo(Gerente);
-
-Diaria.hasOne(Hospedagem, {foreignKey: 'id_diaria', onDelete: 'RESTRICT'});
-Hospedagem.belongsTo(Diaria, {foreignKey: 'id_diaria'});
 
 
 export default Hospedagem;
