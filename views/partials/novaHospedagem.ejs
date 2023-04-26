@@ -18,8 +18,11 @@
                 <input class="numeroDocumentoPassaporteNovaHospedagem disable" type="text" name="passaporte" id="numeroDocumentoPassaporteNovaHospedagem" maxlength="8">
 
                 <label for="acomodacao">Seleciona a acomodação:</label>
+             
                 <select name="acomodacao" id="acomodacao">
-                    <option value="">Apartamento - nº1006</option>
+                    <% for (acomodacao of acomodacoes) {%> 
+                        <option value="<%= acomodacao.id %>"><%= acomodacao.tipo.toUpperCase() + " " + " Andar: " + acomodacao.andar + "º " +"Número: " + acomodacao.numero %></option>
+                    <%} %>
                 </select>
                 <label for="valorhospedagem">Valor da hospedagem:</label>
                 <select name="valorHospedagem" id="valorHospedagem">
@@ -30,7 +33,7 @@
                     
                 </select>
                 <label for="dataSaida">Previsão da saída:</label>
-                <input type="date" name="dataSaida" id="dataSaida">
+                <input type="date" name="dataSaida" id="dataSaida" min="<%= dataHoje %>">
             </div>
             <br>
             <input id="submitNovaHospedagem" type="submit" value="Cadastrar">

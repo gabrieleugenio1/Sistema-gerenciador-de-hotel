@@ -31,11 +31,12 @@ export default (hospede) => {
     cpf = cpf.replace(/[^\d]/g, '');  // Remove caracteres não numéricos. 
     if (!validateCPF(cpf) || !cpf || cpf == undefined || cpf == null) erros.push({ error: "CPF inválido!" });   
     if (!rg || rg == undefined || rg == null || isNaN(rg) || rg.length != 8) erros.push({ error: "RG inválido!" });
-    passaporte = null;
+  } else {
+    passaporte = "Não possui";
   };
 
-  if(passaporte){
-    cpf = null;
+  if(!passaporte){
+    passaporte = "Não possui";
   };
 
   if(!nome || nome == undefined || nome == null ) {

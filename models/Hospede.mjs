@@ -17,9 +17,7 @@ const Hospede = conn.define('hospedes', {
         type: DataTypes.STRING,
         unique: true,
         validate:{
-            isNumeric: true,
-            min:8,
-            max:8,   
+            isNumeric: true, 
         },
     },
     cpf:{
@@ -27,8 +25,6 @@ const Hospede = conn.define('hospedes', {
         unique: true,
         validate:{
             isNumeric: true,
-            min:11,
-            max:11
         },
     },
     passaport:{

@@ -1,27 +1,36 @@
-const cep = document.querySelector("#cep");
+// Função para carregar a janela modal
+function abrirModal(carregarModal, id) {
+    //console.log("Carregar a janela modal: " + carregarModal);
 
-async function buscarCEP(cep) {
-    if (cep.length < 8) return;
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    const jsonData = await response.json();
-    return jsonData;
-  };
-   
-cep.addEventListener("keyup", async ()=>{
+    // Receber o seletor da janela modal que será aberta
+    let modal = document.getElementById(carregarModal);
 
-    if(cep.value.length == 8 && !isNaN(cep.value)){
-        await buscarCEP(cep.value).then(resultado => {
-            console.log(resultado)
-            document.querySelector("#logradouro").value = resultado.logradouro;
-            document.querySelector("#uf").value = resultado.uf;
-            document.querySelector("#cidade").value = resultado.localidade;
-            document.querySelector("#bairro").value = resultado.bairro;
-        });
-    };
-});
+    // Apresentar a janela modal
+    modal.style.display = 'block';
+    console.log(modal)
+    // Ocultar barra de rolagem
+    document.body.style.overflow = 'hidden';
+}
+
+// Função para fechar a janela modal
+function fecharModal(fecharModal){
+    //console.log("Fechar a janela modal: " + fecharModal);
+
+    // Receber o seletor da janela modal que será fechada
+    let modal = document.getElementById(fecharModal);
+
+    // Ocultar a janela modal
+    modal.style.display = 'none';
+
+    // Apresentar barra de rolagem
+    document.body.style.overflow = 'auto';
+}
 
 
-/*Nova hospedagem*/
+
+
+
+
   
 async function buscarCliente(tipo) {
     let numero;
@@ -47,10 +56,6 @@ async function buscarCliente(tipo) {
     }; 
     return jsonData;
 };  
-
-const cliente = document.querySelector("#buscarCliente");
-const clienteCpf = document.querySelector("#numeroDocumentoCpfNovaHospedagem");
-
 cliente.addEventListener("click", async () => {
     let resultado = await buscarCliente(document.querySelector("#tipoDocumentoNovaHospedagem").value)
     document.getElementById("resultadoBuscaCliente").innerHTML= resultado.nome_completo;

@@ -5,6 +5,7 @@ import validarAdmin from "../functions/validarAdmin.mjs";
 import Autenticacao from "../middleware/autenticacao.mjs";
 import * as model from "../models/indexModels.mjs";
 import moment from "moment/moment.js";
+import { fn, col } from "sequelize";
 
 export default class PrincipalController {
 
@@ -64,9 +65,21 @@ export default class PrincipalController {
 
     static async home (req, res) {
         moment.locale("pt-br"); 
+        const garagens = await model.Garagem.findAll({raw:true, include:[model.Acomodacao]});
         const diarias = await model.Diaria.findAll({raw: true});
         const hospedes = await model.Hospede.findAll({raw:true});
-
+        const acomodacoes = await model.Acomodacao.findAll({raw:true});
+        const hospedagens =  await model.Hospedagem.findAll({
+            raw:true,
+            attributes:[
+                "id",
+                "valor",
+                "status",
+                [fn('date_format', col('hospedagem.createdAt'), '%d/%m/%Y, %H:%ih'), 'entrada'],
+                [fn('date_format', col('previsao_saida'), '%d/%m/%Y'), 'previsao_saida'],
+            ],
+            include:[model.Acomodacao, {model: model.Hospede, attributes:["nome_completo"]}],
+        });
         hospedes.map((hospede) => {
             if(hospede.cpf) {
                 const parteA = hospede.cpf.substring(0,3);
@@ -77,7 +90,8 @@ export default class PrincipalController {
             }; 
             hospede.cliente = moment(hospede.createdAt).format('L');
         })
-        return res.status(200).render("./admin/home", {title: "HotelHUB", diarias: diarias, hospedes:hospedes, mensagem:req.flash("mensagem"), erros: req.flash("erros")});
+        moment.locale("en-ca"); 
+        return res.status(200).render("./admin/home", {title: "HotelHUB", diarias: diarias, hospedes:hospedes, hospedagens: hospedagens, acomodacoes: acomodacoes, garagens:garagens, dataHoje:moment().format('L'), mensagem:req.flash("mensagem"), erros: req.flash("erros")});
     };
 
     static async logout (req, res) {

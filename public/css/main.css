@@ -67,10 +67,6 @@ body {
 }
 /*Fim cabeçalho*/
 
-main{
-    height: 100%;
-}
-
 /*Opções*/
 .options {
     display: flex;
@@ -138,6 +134,11 @@ input[type="submit"], button{
 
 input[type="date"]{
     width: 17%;
+}
+/*retirar arrows datepicker */
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
 }
 
 table{

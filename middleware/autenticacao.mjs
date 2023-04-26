@@ -7,7 +7,7 @@ export default class Autenticacao {
 
     static gerarToken(admin){
         const payload = {adminId: admin.id};
-        const options = {expiresIn: '2h'};
+        const options = {expiresIn: '12h'};
         return sign(payload, secret, options);
     };
 

@@ -16,7 +16,7 @@
             <% for(hospede of hospedes ) {%> 
                 <tr>
                     <td><%= hospede.nome_completo %></td>
-                    <td><%= hospede.cpf %></td>
+                    <td><%= hospede.passaporte || hospede.cpf   %></td>
                     <td><%= hospede.nacionalidade%></td>
                     <td><%= hospede.telefone %></td>
                     <td><%= hospede.cliente %></td>

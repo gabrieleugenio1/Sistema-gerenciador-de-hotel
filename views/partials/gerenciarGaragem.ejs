@@ -3,12 +3,14 @@
     <h2 class="escolha__titulo">Gerenciar Garagem</h2>
     <form action="/cadastrarGaragem" method="post">
         <label for="tipo">Selecione o tipo:</label><br>
-        <select name="tipo" id="tipo">
-            <option value="apartamento">Apartamento - nº1006</option>
+        <select name="acomodacao" id="acomodacao">
+            <% for (acomodacao of acomodacoes) {%> 
+                <option value="<%= acomodacao.id %>"><%= acomodacao.tipo.toUpperCase() + " " + " Andar: " + acomodacao.andar + "º " +"Número: " + acomodacao.numero %></option>
+            <%} %>
         </select>
             <div class="escolha__form___flex">
-                <label for="acomodacao">Identificação da vaga:</label>
-                <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                <label for="vaga">Identificação da vaga:</label>
+                <input type="tel" name="vaga" id="vaga">
             </div>
             <br>
             <input type="submit" value="Cadastrar">
@@ -24,11 +26,13 @@
             </tr>
         </thead>
         <tbody>
+        <% for(garagem of garagens) {%> 
             <tr>
-                <td>Apartamento - nº1006</td>
-                <td>10</td>
-                <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
-            </tr>
+                <td><%= garagem["acomodacao.tipo"].toUpperCase() + " " + " Andar: " + garagem["acomodacao.andar"] + "º " +"Número: " + garagem["acomodacao.numero"] %></td>
+                <td><%= garagem.vaga %></td>
+                <td><a href="<%=garagem.id%>"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+            </tr>                                    
+        <%}%>
         </tbody>
     </table>
     <br>

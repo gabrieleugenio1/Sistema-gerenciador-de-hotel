@@ -11,7 +11,7 @@
                 <label for="acomodacao">Número da acomadação:</label>
                 <input type="tel" name="acomodacao" id="acomodacaoNumero">
                 <label for="andar">Andar:</label>
-                <input type="tel" name="andar" id="acomodacaoAndar">
+                <input type="tel" name="andar" id="acomodacaoAndar" minlength="0">
             </div>
             <br>
             <input type="submit" value="Cadastrar">
@@ -27,12 +27,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Apartamento</td>
-                <td>10</td>
-                <td>1</td>
-                <td><a href="#"><i class="fa-solid fa-trash fa-lg"></i></a></td>
-            </tr>
+            <% for (acomodacao of acomodacoes) {%> 
+                <tr>
+                    <td><%= acomodacao.tipo.charAt(0).toUpperCase() + acomodacao.tipo.slice(1); %></td>
+                    <td><%= acomodacao.numero %></td>
+                    <td><%= acomodacao.andar %></td>
+                    <td><a href="<%= acomodacao.id %>"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+                </tr>
+            <%} %>
         </tbody>
     </table>
     <br>

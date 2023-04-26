@@ -6,6 +6,7 @@
     <title><%=title%></title>
     <link rel="stylesheet" href="/css/all.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/modal.css">
     <script defer type="text/javascript" src="/js/main.js"></script>
     <script defer type="text/javascript" src="/js/fetch.js"></script>
 </head>
@@ -79,6 +80,65 @@
             </button>
         </section>
 
+        <!-- Janela modal 'vis-modal'-->
+        <div id="vis-modal" class="modal">
+            <div class="conteudo-modal">
+                <div class="cabecalho-modal">
+                    <h1 class="cabecalho-titulo-modal">Modificar hospedagem</h1>
+                    <!-- Chamar a função para fechar a janela modal 'vis-modal' -->
+                    <span class="cabecalho-modal-fechar" onclick="fecharModal('vis-modal')">X</span>
+                </div>
+
+                <div class="corpo-modal">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome do hóspede</th>
+                                <th>Check-in</th>
+                                <th>Previsão de saída</th>
+                                <th>Check-out</th>
+                                <th>Status</th>
+                                <th>Placa do veículo</th>
+                                <th>Tipo de acomodação</th>
+                                <th>Nº Acomodação</th>
+                                <th>Andar da Acomodação</th>
+                                <th>Valor da Diária</th>
+                                <th>Diárias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gabriel</td>
+                                <td>24/04/2023, 16:50h</td>
+                                <td>27/04/2023, 12:00h</td>
+                                <td></td>
+                                <td>Ativa</td>
+                                <td>PLI1123</td>
+                                <td>QUARTO</td>
+                                <td>245</td>
+                                <td>1º andar</td>
+                                <td>R$500</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="corpo-modal">
+                    <div style="text-align: center;">
+                        <h3>Informações para Check-Out</h3>
+                        <h4>Quantidade de diárias:</h4>
+                        <h4>1</h4>
+                        <h4>Saldo devedor:</h4>
+                        <h4>R$500</h4>
+                    </div>
+                </div>
+                <div class="rodape-modal">
+                    <!-- Botão para fechar a janela modal 'vis-modal' -->
+                    <button class="btn-outline-success" onclick="fecharModal('vis-modal')">Fechar</button>
+                </div>
+
+            </div>
+        </div>
         <%- include("../partials/novaHospedagem"); %>
 
         <%- include("../partials/gerenciarHospedagem"); %>
@@ -98,5 +158,6 @@
         <h3>Desenvolvido por: <a href="mailto:gabrieleugeniohu3@gmail.com">Gabriel Eugênio</a></h3>
     </footer>
     <script src="/js/options.js"></script>
+    <script src="/js/modal.js"></script>
 </body>
 </html>

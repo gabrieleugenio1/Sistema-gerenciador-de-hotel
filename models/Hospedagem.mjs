@@ -3,7 +3,6 @@ import { DataTypes, conn } from "../db/conn.mjs";
 import Hospede from "./Hospede.mjs";
 import Acomodacao from "./Acomodacao.mjs";
 import Gerente from "./Gerente.mjs";
-import Diaria from "./Diaria.mjs";
 
 const Hospedagem = conn.define('hospedagem', {
     id:{
@@ -26,8 +25,12 @@ const Hospedagem = conn.define('hospedagem', {
     },
     saida:{
         type: DataTypes.DATE,
-        allowNull: false
-    }
+    },
+    status:{
+        type: DataTypes.BOOLEAN,
+        allowNull:false,
+        defaultValue: true,
+    },
 }, {freezeTableName: 'hospedagem'});
 
 
