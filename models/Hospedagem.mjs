@@ -23,6 +23,10 @@ const Hospedagem = conn.define('hospedagem', {
         type: DataTypes.DATEONLY,
         allowNull: false
     },
+    diaria:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     saida:{
         type: DataTypes.DATE,
     },
@@ -30,6 +34,9 @@ const Hospedagem = conn.define('hospedagem', {
         type: DataTypes.BOOLEAN,
         allowNull:false,
         defaultValue: true,
+    },
+    placa:{
+        type: DataTypes.STRING(14),
     },
 }, {freezeTableName: 'hospedagem'});
 

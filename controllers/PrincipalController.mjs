@@ -5,7 +5,7 @@ import validarAdmin from "../functions/validarAdmin.mjs";
 import Autenticacao from "../middleware/autenticacao.mjs";
 import * as model from "../models/indexModels.mjs";
 import moment from "moment/moment.js";
-import { fn, col } from "sequelize";
+import { fn, col, Op } from "sequelize";
 
 export default class PrincipalController {
 
@@ -89,9 +89,10 @@ export default class PrincipalController {
                 hospede.cpf = parteA + "." + parteB + "." + parteC + "-" + parteD;
             }; 
             hospede.cliente = moment(hospede.createdAt).format('L');
-        })
+        });
+        const acomodacoesTestada = await model.Acomodacao.findAll({raw:true, include:[model.Hospedagem], where:{"$Hospedagem.id$":null}});
         moment.locale("en-ca"); 
-        return res.status(200).render("./admin/home", {title: "HotelHUB", diarias: diarias, hospedes:hospedes, hospedagens: hospedagens, acomodacoes: acomodacoes, garagens:garagens, dataHoje:moment().format('L'), mensagem:req.flash("mensagem"), erros: req.flash("erros")});
+        return res.status(200).render("./admin/home", {title: "HotelHUB", diarias: diarias, hospedes:hospedes, hospedagens: hospedagens, acomodacoes: acomodacoes, acomodacoesTestadas: acomodacoesTestada, garagens:garagens, dataHoje:moment().format('L'), mensagem:req.flash("mensagem"), erros: req.flash("erros")});
     };
 
     static async logout (req, res) {

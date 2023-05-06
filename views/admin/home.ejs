@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="/css/modal.css">
     <script defer type="text/javascript" src="/js/main.js"></script>
     <script defer type="text/javascript" src="/js/fetch.js"></script>
+    <script src="/js/modal.js"></script>
 </head>
 <body>
     <header class="header">
-        <h1>HotelHUB</h1>
+        <a href="/admin/home"><h1>HotelHUB</h1></a>
         <a href="/logout"><i class="fa-solid fa-right-from-bracket fa-xl header__icon"></i></a>
     </header>
     <main>
@@ -108,17 +109,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Gabriel</td>
-                                <td>24/04/2023, 16:50h</td>
-                                <td>27/04/2023, 12:00h</td>
-                                <td></td>
-                                <td>Ativa</td>
-                                <td>PLI1123</td>
-                                <td>QUARTO</td>
-                                <td>245</td>
-                                <td>1º andar</td>
-                                <td>R$500</td>
-                                <td>1</td>
+                                <td id="modal-table-nome">Gabriel</td>
+                                <td id="modal-table-checkin">24/04/2023, 16:50h</td>
+                                <td id="modal-table-previsaosaida">27/04/2023, 12:00h</td>
+                                <td id="modal-table-checkout"></td>
+                                <td id="modal-table-status">Ativa</td>
+                                <td id="modal-table-placa">PLI1123</td>
+                                <td id="modal-table-acomodacao">QUARTO</td>
+                                <td id="modal-table-nAcomodacao">245</td>
+                                <td id="modal-table-aAcomodacao">1º andar</td>
+                                <td id="modal-table-valor">R$500</td>
+                                <td id="modal-table-diarias">1</td>
                             </tr>
                         </tbody>
                     </table>
@@ -127,9 +128,10 @@
                     <div style="text-align: center;">
                         <h3>Informações para Check-Out</h3>
                         <h4>Quantidade de diárias:</h4>
-                        <h4>1</h4>
+                        <h4 id="modal-table-checkout-diaria">1</h4>
                         <h4>Saldo devedor:</h4>
-                        <h4>R$500</h4>
+                        <h4 id="modal-table-saldoDevedor">R$500</h4>
+                        <button class="button_checkout">Fazer Check-Out</button>
                     </div>
                 </div>
                 <div class="rodape-modal">
@@ -158,6 +160,5 @@
         <h3>Desenvolvido por: <a href="mailto:gabrieleugeniohu3@gmail.com">Gabriel Eugênio</a></h3>
     </footer>
     <script src="/js/options.js"></script>
-    <script src="/js/modal.js"></script>
 </body>
 </html>

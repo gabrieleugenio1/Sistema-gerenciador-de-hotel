@@ -65,6 +65,11 @@ body {
 .header__icon {
     color: #000;
 }
+
+.header > a {
+    text-decoration: none;
+    color: #000;
+}
 /*Fim cabeçalho*/
 
 /*Opções*/
@@ -147,13 +152,21 @@ table{
 
 /*Fim escolha*/
 
-/*Nova hospedagem*/
+/*hospedagem*/
 .nova_hospedagem-buscar_cliente{
     background-color: var(--cor-2);
     padding: .3rem;
 }
 
-/*Fim nova hospedagem*/
+.button_checkout{
+    padding: 0.5rem;
+    background-color: var(--cor-2);
+    opacity: 0.8;
+}
+.button_checkout:hover{
+    opacity: 1;
+}
+/*Fim hospedagem*/
 
 /*Cadastrar hospede*/
 .cadastrar_hospede input[type="text"] {

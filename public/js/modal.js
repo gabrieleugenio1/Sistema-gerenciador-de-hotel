@@ -1,19 +1,21 @@
 // Função para carregar a janela modal
-function abrirModal(carregarModal, id) {
+async function abrirModal(carregarModal, id) {
     //console.log("Carregar a janela modal: " + carregarModal);
+
+    /*Modificar tabela*/
+    await buscarHospedagem(id);
 
     // Receber o seletor da janela modal que será aberta
     let modal = document.getElementById(carregarModal);
-
     // Apresentar a janela modal
     modal.style.display = 'block';
-    console.log(modal)
+
     // Ocultar barra de rolagem
     document.body.style.overflow = 'hidden';
-}
+};
 
 // Função para fechar a janela modal
-function fecharModal(fecharModal){
+async function fecharModal(fecharModal){
     //console.log("Fechar a janela modal: " + fecharModal);
 
     // Receber o seletor da janela modal que será fechada
@@ -24,48 +26,32 @@ function fecharModal(fecharModal){
 
     // Apresentar barra de rolagem
     document.body.style.overflow = 'auto';
-}
-
-
-
-
-
-
+};
   
-async function buscarCliente(tipo) {
-    let numero;
-    if (tipo == "cpf") {
-        numero = document.querySelector("#numeroDocumentoCpfNovaHospedagem").value;
-    } else if(tipo == "passaporte") {
-        numero = document.querySelector("#numeroDocumentoPassaporteNovaHospedagem").value;
-    } else {
-        return console.log("Erro ao buscar cliente");
-    };
-
-    const response = await fetch(`/${tipo}/${numero}`);
-    const jsonData = await response.json();
-    if(!jsonData){
-        document.getElementById("resultadoBuscaCliente").innerHTML= "Hóspede não encontrado";
-        document.getElementById("submitNovaHospedagem").disabled = true;
+async function buscarHospedagem(id) {
+    const responseBuscarHospedagem = await fetch(`/buscarHospedagem${id}`);
+    const buscarHospedagem = await responseBuscarHospedagem.json();
+    console.log(buscarHospedagem)
+    if(!buscarHospedagem){
         return;
     };
-    if(jsonData.message == "404") { 
-         document.getElementById("resultadoBuscaCliente").innerHTML= "Insirá um Nº de documento válido";
-         document.getElementById("submitNovaHospedagem").disabled = true;
+    if(buscarHospedagem.message == "404") { 
          return;
     }; 
-    return jsonData;
-};  
-cliente.addEventListener("click", async () => {
-    let resultado = await buscarCliente(document.querySelector("#tipoDocumentoNovaHospedagem").value)
-    document.getElementById("resultadoBuscaCliente").innerHTML= resultado.nome_completo;
-    document.getElementById("submitNovaHospedagem").disabled = false;
-});
 
-clienteCpf.addEventListener("keyup", async () => {
-    if(clienteCpf.value.length == 11){
-        let resultado = await buscarCliente(document.querySelector("#tipoDocumentoNovaHospedagem").value)
-        document.getElementById("resultadoBuscaCliente").innerHTML= resultado.nome_completo;
-        document.getElementById("submitNovaHospedagem").disabled = false;
-    };
-});
+    document.getElementById("modal-table-nome").innerText = buscarHospedagem["hospede.nome_completo"];
+    document.getElementById("modal-table-checkin").innerText = buscarHospedagem.entrada;
+    document.getElementById("modal-table-previsaosaida").innerText = buscarHospedagem.previsao_saida;
+    document.getElementById("modal-table-checkout").innerText = buscarHospedagem.saida ? buscarHospedagem.saida : "";
+    document.getElementById("modal-table-status").innerText = buscarHospedagem.status == 1 ? "Ativa" : "Finalizada";
+    document.getElementById("modal-table-placa").innerText = "Modificar"
+    document.getElementById("modal-table-acomodacao").innerText = buscarHospedagem["acomodacao.tipo"].charAt(0).toUpperCase() + buscarHospedagem["acomodacao.tipo"].slice(1);
+    document.getElementById("modal-table-nAcomodacao").innerText = buscarHospedagem["acomodacao.numero"];
+    document.getElementById("modal-table-aAcomodacao").innerText = buscarHospedagem["acomodacao.andar"];
+    document.getElementById("modal-table-valor").innerText = "R$" + buscarHospedagem.valor;
+    document.getElementById("modal-table-saldoDevedor").innerText = "R$" + buscarHospedagem.valor;
+    document.getElementById("modal-table-diarias").innerText = buscarHospedagem.diaria
+    document.getElementById("modal-table-checkout-diaria").innerText = buscarHospedagem.diaria
+
+    return buscarHospedagem;
+};  

@@ -2,7 +2,7 @@
 import * as model from "../models/indexModels.mjs";
 import validarHospede from "../functions/validarHospede.mjs";
 import moment from "moment";
-import { Op, fn } from "sequelize";
+import { Op, fn, col } from "sequelize";
 
 export default class ClientesController {
     
@@ -28,10 +28,11 @@ export default class ClientesController {
     };
 
     static async cadastrarHospedagem (req, res) {
-        let {cpf, passaporte, acomodacao, valorHospedagem, dataSaida} = req.body;
+        let {cpf, passaporte, acomodacao, idDiaria, dataSaida, placa} = req.body;
+
         /*Validação geral*/
-        if(!valorHospedagem || valorHospedagem < 1 || isNaN(valorHospedagem)) {
-            req.flash("erros", {error: "Valor incorreto."});
+        if(!idDiaria || idDiaria < 1 || isNaN(idDiaria)) {
+            req.flash("erros", {error: "Diária incorreta."});
             return res.status(400).redirect("/admin/home");
         };
 
@@ -42,6 +43,12 @@ export default class ClientesController {
         
         if(cpf===undefined) cpf="Não possui";
         if(passaporte===undefined) passaporte="Não possui";
+        const diaria = await model.Diaria.findOne({where:{id: idDiaria}});
+
+        if(!diaria || diaria === null || diaria === undefined) {
+            req.flash("erros", {error: "Diária incorreta."});
+            return res.status(400).redirect("/admin/home");
+        };
 
         /*Verificação para saber se existem os dados*/
         const hospedeResultado = await model.Hospede.findOne({raw:true, where:{
@@ -53,7 +60,7 @@ export default class ClientesController {
         if(hospedeResultado) {
             const acomodacaoResultado = await model.Acomodacao.findOne({raw:true, where:{id: acomodacao}});
             if(acomodacaoResultado) {
-                await model.Hospedagem.create({valor: valorHospedagem,entrada: fn('NOW'),previsao_saida: dataSaida, hospedeId:hospedeResultado.id, acomodacaoId: acomodacaoResultado.id}).then(hospedagem =>{
+                await model.Hospedagem.create({valor: diaria.valor, diaria: diaria.qnt_dias, entrada: fn('NOW'),placa:placa ? placa : null, previsao_saida: dataSaida, hospedeId:hospedeResultado.id, acomodacaoId: acomodacaoResultado.id}).then(hospedagem =>{
                     req.flash("mensagem", "Hospedagem criada com sucesso!");
                     res.status(201).redirect("/admin/home");
                 }).catch(err => console.log(err));
@@ -65,8 +72,30 @@ export default class ClientesController {
             req.flash("erros", {error: "CPF ou Passaporte incorreto."});
             return res.status(400).redirect("/admin/home");
         };
-
      };
+
+    static async buscarHospedagem (req, res){
+        const id = req.params.id;
+        if(isNaN(id) || !id || id === null || id === undefined){
+           return res.status(401).json({error: "ID inválido"});
+        };
+
+        const hospedagem = await model.Hospedagem.findOne({
+            raw:true, 
+            attributes:[
+                "id",
+                "valor",
+                "diaria",
+                "status",
+                [fn('date_format', col('hospedagem.createdAt'), '%d/%m/%Y, %H:%ih'), 'entrada'],
+                [fn('date_format', col('previsao_saida'), '%d/%m/%Y'), 'previsao_saida'],
+            ],
+            where:{id: id}, 
+            include:[{model: model.Acomodacao, include:[model.Garagem]}, model.Hospede]});
+        console.log(hospedagem)
+        if(!hospedagem) return res.status(401).json({error: "ID inválido"});
+        return res.status(200).json(hospedagem);
+    };
 
     static async cadastrarHospede (req, res) {
         const validacaoHospede = validarHospede(req.body)
@@ -145,7 +174,7 @@ export default class ClientesController {
     };
 
     static async cadastrarGaragem (req, res) {
-        const { acomodacao,vaga } = req.body;
+        const { acomodacao, vaga } = req.body;
 
         const acomodacaoExiste = await model.Acomodacao.findOne({where:{id:acomodacao}});
         if(!acomodacaoExiste) {
