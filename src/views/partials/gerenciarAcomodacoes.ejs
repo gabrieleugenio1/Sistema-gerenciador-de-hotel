@@ -1,0 +1,42 @@
+
+<section class="escolha gerenciar_acomodacao disable">
+    <br>
+    <h2 class="escolha__titulo">Nova Acomodação</h2>
+    <form action="/cadastrarAcomodacao" method="post">
+        <label for="tipo">Selecione o tipo:</label><br>
+        <select name="tipo" id="tipo">
+            <option value="apartamento">Apartamento</option>
+            <option value="quarto">Quarto</option>
+        </select>
+            <div class="escolha__form___flex">
+                <label for="acomodacao">Número da acomadação:</label>
+                <input type="tel" name="acomodacao" id="acomodacaoNumero">
+                <label for="andar">Andar:</label>
+                <input type="tel" name="andar" id="acomodacaoAndar" minlength="0">
+            </div>
+            <br>
+            <input class="ajuste_fonte" type="submit" value="Cadastrar">
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo de acomodação</th>
+                <th>Número</th>
+                <th>Andar</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (acomodacao of acomodacoes) {%> 
+                <tr>
+                    <td><%= acomodacao.tipo.charAt(0).toUpperCase() + acomodacao.tipo.slice(1); %></td>
+                    <td><%= acomodacao.numero %></td>
+                    <td><%= acomodacao.andar %></td>
+                    <td><a href="<%= acomodacao.id %>"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+                </tr>
+            <%} %>
+        </tbody>
+    </table>
+    <br>
+</section>

@@ -1,0 +1,52 @@
+<section class="escolha nova_hospedagem disable">
+    <br>
+    <h2 class="escolha__titulo">Nova Hospedagem</h2>
+    <form action="/cadastrarHospedagem" method="post">
+        <label for="tipo">Tipo do documento: <b><small id="resultadoBuscaCliente"></small></b></label>
+        <button class="nova_hospedagem-buscar_cliente" id="buscarCliente" type="button">Buscar cliente</button>
+        <br>
+        <select name="tipo" id="tipoDocumentoNovaHospedagem" required>
+            <option value="cpf" selected>CPF</option>
+            <option value="passaporte">Passaporte</option>
+        </select>
+            <div class="escolha__form___flex">
+
+                <label class="numeroDocumentoCpfNovaHospedagem" for="numeroDocumentoCpfNovaHospedagem">Nº Documento:</label>
+                <input class="numeroDocumentoCpfNovaHospedagem" type="tel" name="cpf" id="numeroDocumentoCpfNovaHospedagem" minlength="11" maxlength="11" required>
+
+                <label class="numeroDocumentoPassaporteNovaHospedagem disable" for="numeroDocumentoPassaporteNovaHospedagem">Nº Documento:</label>
+                <input class="numeroDocumentoPassaporteNovaHospedagem disable" type="text" name="passaporte" id="numeroDocumentoPassaporteNovaHospedagem" maxlength="8" required>
+
+                <label for="acomodacao">Seleciona a acomodação:</label>
+             
+                <select name="acomodacao" id="acomodacao" required>
+                    <% if(acomodacoesTestadas.length > 0){%> 
+                        <% for (acomodacao of acomodacoesTestadas) {%> 
+                            <option value="<%= acomodacao.id %>"><%= acomodacao.tipo.toUpperCase() + " " + " Andar: " + acomodacao.andar + "º " +"Número: " + acomodacao.numero %></option>
+                        <%} %>                          
+                    <% } else {%> 
+                        <option>Todas as acomodações ocupadas ou não estão cadastrada</option>
+                    <%}                  
+                    
+                    %>
+ 
+                </select>
+                <label for="valorhospedagem">Valor da hospedagem:</label>
+                <select name="idDiaria" id="idDiaria" required>
+                    <% for(diaria of diarias) 
+                    {%>
+                        <option value="<%= diaria.id %>">R$<%= diaria.valor.replace(".",",") %></option>
+                    <%} %>
+                    
+                </select>
+                <label for="dataSaida">Previsão da saída:</label>
+                <input type="date" name="dataSaida" id="dataSaida" min="<%= dataHoje %>" required>
+                <label for="placa">Placa do veículo:</label>
+                <input type="text" name="placa" id="placa" maxlength="14" placeholder="Caso o cliente possua veículo">
+            </div>
+            <br>
+            <input class="ajuste_fonte" id="submitNovaHospedagem" type="submit" value="Cadastrar">
+        </select>
+    </form>
+    <br>
+</section>

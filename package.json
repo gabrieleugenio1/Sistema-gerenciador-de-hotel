@@ -2,9 +2,11 @@
   "name": "gerenciamento-de-hotel",
   "version": "1.0.0",
   "description": "Sistema de gerenciamento de hotel",
-  "main": "index.mjs",
+  "main": "app.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.mjs",
+    "production": "pm2 app.mjs"
   },
   "author": "",
   "license": "ISC",

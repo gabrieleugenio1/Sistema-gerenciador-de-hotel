@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script defer type="text/javascript" src="/js/main.js"></script>
+    <script defer type="text/javascript" src="/js/fetch.js"></script>
+    <script src="/js/modal.js"></script>
+</head>
+<body>
+    <header class="header">
+        <a href="/admin/home"><h1>HotelHUB</h1></a>
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket fa-xl header__icon"></i></a>
+    </header>
+    <main>
+        <% if( mensagem.length > 0 ) {%> 
+            <div class="alert sucess"><h3 onclick="alerta()"><%= mensagem %></h3></div>
+        <%} else if( erros.length > 0 ) {%> 
+            <div class="alert danger"><h3 onclick="alerta()"><% for(erro of erros) {%> <%= erro.error %> <% } %></h3></div>
+        <%} %>
+        <section class="options">
+            <button class="options__button" id="novaHospedagem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-building fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Nova<br>Hospedagem</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="gerenciarHospedagem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-building-circle-exclamation fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Gerenciar<br>Hospedagem</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="cadastrarHospede">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-users fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Cadastrar<br>Hóspede</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="gerenciarHospede">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-user-gear fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Gerenciar<br>Hóspedes</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="gerenciarAcomodacoes">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-door-open fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Gerenciar<br>Acomodações</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="configurarDiarias">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-sun fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Configurar<br>Diárias</h2></pre>
+                    </div>
+                </div>
+            </button>
+            <button class="options__button" id="gerenciarGaragem">
+                <div>
+                    <div class="options__tipo">
+                        <i class="fa-solid fa-car fa-2xl options__tipo-icon"></i>
+                        <pre><h2>Gerenciar<br>Garagem</h2></pre>
+                    </div>
+                </div>
+            </button>
+        </section>
+
+        <!-- Janela modal 'vis-modal'-->
+        <div id="vis-modal" class="modal">
+            <div class="conteudo-modal">
+                <div class="cabecalho-modal">
+                    <h1 class="cabecalho-titulo-modal">Modificar hospedagem</h1>
+                    <!-- Chamar a função para fechar a janela modal 'vis-modal' -->
+                    <span class="cabecalho-modal-fechar" onclick="fecharModal('vis-modal')">X</span>
+                </div>
+
+                <div class="corpo-modal">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome do hóspede</th>
+                                <th>Check-in</th>
+                                <th>Previsão de saída</th>
+                                <th>Check-out</th>
+                                <th>Status</th>
+                                <th>Placa do veículo</th>
+                                <th>Tipo de acomodação</th>
+                                <th>Nº Acomodação</th>
+                                <th>Andar da Acomodação</th>
+                                <th>Valor da Diária</th>
+                                <th>Diárias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="modal-table-nome">Gabriel</td>
+                                <td id="modal-table-checkin">24/04/2023, 16:50h</td>
+                                <td id="modal-table-previsaosaida">27/04/2023, 12:00h</td>
+                                <td id="modal-table-checkout"></td>
+                                <td id="modal-table-status">Ativa</td>
+                                <td id="modal-table-placa">PLI1123</td>
+                                <td id="modal-table-acomodacao">QUARTO</td>
+                                <td id="modal-table-nAcomodacao">245</td>
+                                <td id="modal-table-aAcomodacao">1º andar</td>
+                                <td id="modal-table-valor">R$500</td>
+                                <td id="modal-table-diarias">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="corpo-modal">
+                    <div style="text-align: center;">
+                        <h3>Informações para Check-Out</h3>
+                        <h4>Quantidade de diárias:</h4>
+                        <h4 id="modal-table-checkout-diaria">1</h4>
+                        <h4>Saldo devedor:</h4>
+                        <h4 id="modal-table-saldoDevedor">R$500</h4>
+                        <button class="button_checkout ajuste_fonte">Fazer Check-Out</button>
+                    </div>
+                </div>
+                <div class="rodape-modal">
+                    <!-- Botão para fechar a janela modal 'vis-modal' -->
+                    <button class="btn-outline-success" onclick="fecharModal('vis-modal')">Fechar</button>
+                </div>
+
+            </div>
+        </div>
+        <%- include("../partials/novaHospedagem"); %>
+
+        <%- include("../partials/gerenciarHospedagem"); %>
+
+        <%- include("../partials/cadastrarHospede"); %>
+
+        <%- include("../partials/gerenciarHospede"); %>
+
+        <%- include("../partials/gerenciarAcomodacoes"); %>
+
+        <%- include("../partials/configurarDiarias"); %>
+
+        <%- include("../partials/gerenciarGaragem"); %>
+
+    </main>
+    <footer>
+        <h3>Desenvolvido por: <a href="mailto:gabrieleugeniohu3@gmail.com">Gabriel Eugênio</a></h3>
+    </footer>
+    <script src="/js/options.js"></script>
+</body>
+</html>

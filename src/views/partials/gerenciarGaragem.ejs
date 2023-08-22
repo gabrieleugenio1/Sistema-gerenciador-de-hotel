@@ -1,0 +1,39 @@
+<section class="escolha gerenciamento_garagem disable">
+    <br>
+    <h2 class="escolha__titulo">Gerenciar Garagem</h2>
+    <form action="/cadastrarGaragem" method="post">
+        <label for="tipo">Selecione o tipo:</label><br>
+        <select name="acomodacao" id="acomodacao">
+            <% for (acomodacao of acomodacoes) {%> 
+                <option value="<%= acomodacao.id %>"><%= acomodacao.tipo.toUpperCase() + " " + " Andar: " + acomodacao.andar + "º " +"Número: " + acomodacao.numero %></option>
+            <%} %>
+        </select>
+            <div class="escolha__form___flex">
+                <label for="vaga">Identificação da vaga:</label>
+                <input type="tel" name="vaga" id="vaga">
+            </div>
+            <br>
+            <input class="ajuste_fonte" type="submit" value="Cadastrar">
+        </select>
+    </form>
+    <h3>Vagas vinculadas</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Acomodação</th>
+                <th>Vaga</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for(garagem of garagens) {%> 
+            <tr>
+                <td><%= garagem["acomodacao.tipo"].toUpperCase() + " " + " Andar: " + garagem["acomodacao.andar"] + "º " +"Número: " + garagem["acomodacao.numero"] %></td>
+                <td><%= garagem.vaga %></td>
+                <td><a href="<%=garagem.id%>"><i class="fa-solid fa-trash fa-lg"></i></a></td>
+            </tr>                                    
+        <%}%>
+        </tbody>
+    </table>
+    <br>
+</section>
