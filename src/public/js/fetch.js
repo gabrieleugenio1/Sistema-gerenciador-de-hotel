@@ -11,7 +11,6 @@ cep.addEventListener("keyup", async ()=>{
 
     if(cep.value.length == 8 && !isNaN(cep.value)){
         await buscarCEP(cep.value).then(resultado => {
-            console.log(resultado)
             if(!resultado?.erro) {
                 //Ocultar texto de erro
                 document.querySelector("#buscarCEP").style.display = "none";
